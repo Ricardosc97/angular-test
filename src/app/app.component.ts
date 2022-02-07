@@ -24,10 +24,7 @@ export class AppComponent {
   ){}
 
   async ngOnInit() {
-    console.log(this.title);
     this.jobs = await this.UsersService.getJobPositions();
-    console.log('this.jobs')
-    console.log(this.jobs)   
   }
 
   /**
