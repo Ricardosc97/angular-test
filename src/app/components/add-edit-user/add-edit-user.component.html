@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>{{title}} Usuario</h1>
+<mat-dialog-content [formGroup]="form" >
+  <mat-form-field >
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Nombre"
+      required
+      name="name"
+    />
+    
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Apellidos</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="lastNames"
+      placeholder="Apellidos"
+      required
+      name="lastNames"
+    />
+    
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Puesto de Trabjo</mat-label>
+    <mat-select formControlName="jobPosition">
+      <mat-option *ngFor="let job of jobs" [value]="job">{{job}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Cumpleaños</mat-label>
+    <input matInput formControlName="birthDate" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">
+        Cerrar
+      </button>
+      <button
+        class="mat-raised-button mat-primary"
+        *ngIf="action == 'add'"
+        [disabled]="!form.valid"
+        (click)="save('add')"
+      >
+        {{title}}
+      </button>
+      <button
+        class="mat-raised-button mat-primary"
+        *ngIf="action == 'edit'"
+        [disabled]="!form.valid"
+        (click)="save('edit')"
+      >
+        {{title}}
+      </button>
+</mat-dialog-actions>
